@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "temp_converter"
+version = "0.1.0"
+description = "A simple temperature converter"
+[tool.hatch.metadata.hooks.default]
+dependencies = [
+    "pytest",
+    "ruff",
+    "mypy",
+    "sphinx",
+]
+name = "temp-converter"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "U.N. Owen", email = "void@some.where" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/U.N. Owen/temp-converter#readme"
+Issues = "https://github.com/U.N. Owen/temp-converter/issues"
+Source = "https://github.com/U.N. Owen/temp-converter"
+
+[tool.hatch.version]
+path = "src/temp_converter/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/temp_converter tests}"
+
+[tool.coverage.run]
+source_pkgs = ["temp_converter", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/temp_converter/__about__.py",
+]
+
+[tool.coverage.paths]
+temp_converter = ["src/temp_converter", "*/temp-converter/src/temp_converter"]
+tests = ["tests", "*/temp-converter/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
